@@ -478,6 +478,100 @@ a { color: inherit; text-decoration: none; }
 .auth-switch a:hover { text-decoration: underline; }
 
 /* ------------------------------------------------------------------ */
+/* Terms page                                                          */
+/* ------------------------------------------------------------------ */
+
+.terms-section {
+    max-width: 1000px;
+    margin: 0 auto;
+    padding: 4.5rem 2rem 6rem;
+}
+
+.terms-header {
+    max-width: 680px;
+    margin-bottom: 3.5rem;
+}
+
+.terms-title {
+    font-family: var(--font-display);
+    font-size: clamp(2.25rem, 5vw, 3.5rem);
+    line-height: 1.1;
+    color: var(--ink);
+    margin-bottom: 1rem;
+}
+
+.terms-intro {
+    font-size: 1.05rem;
+    color: var(--ink-muted);
+    max-width: 560px;
+}
+
+.terms-updated {
+    color: var(--ink-faint);
+    font-size: 0.8rem;
+    margin-top: 1rem;
+}
+
+.terms-layout {
+    display: grid;
+    grid-template-columns: 180px 1fr;
+    gap: 4rem;
+    align-items: start;
+}
+
+.terms-index {
+    position: sticky;
+    top: 84px;
+    display: flex;
+    flex-direction: column;
+    gap: 0.75rem;
+    border-left: 2px solid var(--border);
+    padding-left: 1rem;
+}
+
+.terms-index a {
+    color: var(--ink-muted);
+    font-size: 0.8rem;
+    line-height: 1.4;
+}
+
+.terms-index a:hover {
+    color: var(--accent);
+}
+
+.terms-content {
+    max-width: 650px;
+}
+
+.terms-content section {
+    border-top: 1px solid var(--border);
+    padding: 1.75rem 0 2.25rem;
+    scroll-margin-top: 84px;
+}
+
+.terms-content section:last-child {
+    border-bottom: 1px solid var(--border);
+}
+
+.terms-content h2 {
+    font-family: var(--font-display);
+    font-size: 1.45rem;
+    line-height: 1.25;
+    margin-bottom: 0.85rem;
+}
+
+.terms-content p {
+    color: var(--ink-muted);
+    font-size: 0.95rem;
+    line-height: 1.75;
+    margin-bottom: 0.9rem;
+}
+
+.terms-content p:last-child {
+    margin-bottom: 0;
+}
+
+/* ------------------------------------------------------------------ */
 /* Footer                                                              */
 /* ------------------------------------------------------------------ */
 
@@ -527,4 +621,8 @@ a { color: inherit; text-decoration: none; }
 @media (max-width: 600px) {
     .nav-links a:not(.nav-cta) { display: none; }
     .hero { padding: 3rem 1rem 2rem; }
+
+    .terms-section { padding: 3rem 1rem 4rem; }
+    .terms-layout { grid-template-columns: 1fr; gap: 2rem; }
+    .terms-index { position: static; }
 }
