@@ -16,6 +16,8 @@ export function testDeps(now: () => Date) {
     get: async (k) => files.get(k)!,
     remove: async (k) => { files.delete(k); },
   };
+  // Unique per run, so message ids never collide with rows a previous run left in the test database.
+  const runId = Date.now().toString(36);
   const sent: { to: string; templateId: string; params: string[] }[] = [];
   const otps: string[] = [];
   const deps: Deps = {
@@ -26,7 +28,7 @@ export function testDeps(now: () => Date) {
       catch (e) { await c.query('ROLLBACK'); throw e; } finally { c.release(); }
     },
     tokens: linkTokenService('test-secret-test-secret-test-secret-1234', 14),
-    whatsapp: { sendTemplate: async (to, templateId, params) => { sent.push({ to, templateId, params }); return { messageId: `wamid.${sent.length}` }; } },
+    whatsapp: { sendTemplate: async (to, templateId, params) => { sent.push({ to, templateId, params }); return { messageId: `wamid.${runId}.${sent.length}` }; } },
     store,
     extractor: demoExtractor(),
     sendOtpSms: async (_m, code) => { otps.push(code); },

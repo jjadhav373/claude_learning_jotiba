@@ -29,10 +29,10 @@ export const documentRepository = (db: Queryable) => ({
   async setStatus(docId: string, status: DocStatus, x: { failure?: DocFailure; failedPage?: number; passwordProtected?: boolean;
     extractorVersion?: string; pages?: number; last4?: string } = {}): Promise<void> {
     await db.query(
-      `UPDATE policy_document SET processing_status = $2, failure_reason = $3, failed_page = $4,
+      `UPDATE policy_document SET processing_status = $2::doc_status_t, failure_reason = $3, failed_page = $4,
               password_protected = COALESCE($5, password_protected), extractor_version = COALESCE($6, extractor_version),
               pages = COALESCE($7, pages), policy_number_last4 = COALESCE($8, policy_number_last4),
-              ready_ts = CASE WHEN $2 IN ('ready','needs_review') THEN now() ELSE ready_ts END
+              ready_ts = CASE WHEN $2::doc_status_t IN ('ready','needs_review') THEN now() ELSE ready_ts END
        WHERE doc_id = $1`,
       [docId, status, x.failure ?? null, x.failedPage ?? null, x.passwordProtected ?? null, x.extractorVersion ?? null,
         x.pages ?? null, x.last4 ?? null]);

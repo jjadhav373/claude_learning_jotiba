@@ -57,6 +57,13 @@ npm run db:migrate                           # tables, views, seed data
 npm run dev:api                              # terminal 1 — API on :8080 (OTP codes + WhatsApp sends print here)
 npm run dev:web                              # terminal 2 — web on :5173
 npm run link                                 # terminal 3 — prints a signed test link to open
+npm run link -- +919800000123                # a link for another mobile = a fresh journey (the same mobile resumes where it stopped)
+
+# tests — the backend tests use their own database and do not read backend/.env
+psql -U postgres -c "CREATE DATABASE cover_check_test"
+DATABASE_URL=postgres://postgres:YOUR_PASSWORD@localhost:5432/cover_check_test npm run db:migrate
+TEST_DATABASE_URL=postgres://postgres:YOUR_PASSWORD@localhost:5432/cover_check_test npm test
+# Windows PowerShell: set them first with  $env:TEST_DATABASE_URL="postgres://..."
 ```
 
 VS Code shortcut: Terminal → Run Task → "Run full app (API + Web)" or "Prototype (no database)".
