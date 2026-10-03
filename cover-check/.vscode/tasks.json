@@ -1,9 +1,0 @@
-{
-  "version": "2.0.0",
-  "tasks": [
-    { "label": "Prototype (no database)", "type": "npm", "script": "prototype", "isBackground": true, "problemMatcher": [] },
-    { "label": "API", "type": "npm", "script": "dev:api", "isBackground": true, "problemMatcher": [] },
-    { "label": "Web", "type": "npm", "script": "dev:web", "isBackground": true, "problemMatcher": [] },
-    { "label": "Run full app (API + Web)", "dependsOn": ["API", "Web"], "problemMatcher": [] }
-  ]
-}
