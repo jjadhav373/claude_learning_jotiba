@@ -1,0 +1,43 @@
+name: Cover Check CI
+
+on:
+  push:
+    paths: ['cover-check/**', '.github/workflows/cover-check.yml']
+  pull_request:
+    paths: ['cover-check/**', '.github/workflows/cover-check.yml']
+
+jobs:
+  test:
+    runs-on: ubuntu-latest
+    services:
+      postgres:
+        image: postgres:16
+        env:
+          POSTGRES_PASSWORD: postgres
+          POSTGRES_DB: cover_check_test
+        ports: ['5432:5432']
+        options: >-
+          --health-cmd "pg_isready -U postgres"
+          --health-interval 5s --health-timeout 5s --health-retries 10
+    env:
+      DATABASE_URL: postgres://postgres:postgres@localhost:5432/cover_check_test
+      TEST_DATABASE_URL: postgres://postgres:postgres@localhost:5432/cover_check_test
+      PGPASSWORD: postgres
+    defaults:
+      run:
+        working-directory: cover-check
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-node@v4
+        with:
+          node-version: 22
+          cache: npm
+          cache-dependency-path: cover-check/package-lock.json
+      - run: npm ci
+      - run: npm run typecheck
+      - run: npm run db:migrate
+      - name: SQL smoke tests
+        run: psql -h localhost -U postgres -d cover_check_test -v ON_ERROR_STOP=1 -f data/tests/smoke.sql
+      - run: npm test
+      - run: npm run build -w frontend
+      - run: npm run build:prototype
