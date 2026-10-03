@@ -1,0 +1,58 @@
+/* Cover Check design tokens — see docs/DESIGN_SYSTEM.md.
+   Brand hues from Turtlemint's public brand registry (#009F69, #7BDCB5, #005A87);
+   steps, neutrals and semantic colours are Cover Check decisions. */
+:root {
+  /* brand */
+  --mint-800: #006B47;
+  --mint-700: #00875A;   /* CTA fill, green text — 4.6:1 on white */
+  --mint-600: #009F69;   /* brand accent, progress, icons */
+  --mint-300: #7BDCB5;   /* illustration mid-tone */
+  --mint-100: #DDF5EA;   /* selected tile */
+  --mint-50:  #F1FBF6;   /* screen wash */
+  --ocean-700: #005A87;  /* links, "Worth asking" */
+  --ocean-100: #D5E8F3;
+  --ocean-50:  #E7F2F8;
+
+  /* neutrals */
+  --ink-900: #14232B;
+  --ink-700: #2E4049;
+  --ink-600: #4D5F68;
+  --ink-400: #8A9AA2;
+  --line:    #DCE4E7;
+  --line-strong: #C2CED3;
+  --canvas:  #F6F8F7;
+  --surface: #FFFFFF;
+
+  /* semantic (no red for findings — red is for input errors only) */
+  --amber-700: #9A5B00;
+  --amber-100: #FFE7BF;
+  --amber-50:  #FFF4E0;
+  --danger-700: #B42318;
+  --danger-50:  #FEF0EE;
+
+  /* type */
+  --font-display: 'Poppins', 'Noto Sans Devanagari', system-ui, sans-serif;
+  --font-body: 'Hind', 'Noto Sans Devanagari', system-ui, -apple-system, 'Segoe UI', Roboto, sans-serif;
+  --fs-display: 26px; --lh-display: 32px;
+  --fs-h1: 22px; --lh-h1: 28px;
+  --fs-h2: 18px; --lh-h2: 24px;
+  --fs-body: 16px; --lh-body: 24px;
+  --fs-small: 14px; --lh-small: 20px;
+  --fs-caption: 12px; --lh-caption: 16px;
+
+  /* shape + space */
+  --r-tile: 14px;
+  --r-card: 18px;
+  --r-pill: 999px;
+  --gutter: 20px;
+  --tap: 48px;
+  --tile-h: 56px;
+
+  --shadow-footer: 0 -6px 24px rgba(20, 35, 43, 0.06);
+  --shadow-card: 0 1px 2px rgba(20, 35, 43, 0.06), 0 8px 24px rgba(20, 35, 43, 0.06);
+  --focus: 0 0 0 3px var(--mint-300), 0 0 0 4px var(--ink-900);
+
+  --ease: cubic-bezier(.2, .7, .2, 1);
+  --dur: 200ms;
+}
+@media (prefers-reduced-motion: reduce) { :root { --dur: 0ms; } }
